@@ -1,0 +1,16 @@
+# python
+*.pyc
+__pycache__/
+venv/
+*.env
+*.log
+*.pth
+ckpts/vicuna
+ckpts/diffpure_models/diffusion/Guide_Diffusion/256x256_diffusion_uncond.pt
+outputs/
+*.svg
+# *.png
+# *.pdf
+ckpts/vicuna-13b-v1.1
+ckpts/diffpure_models/diffusion/Guide_Diffusion/512x512_diffusion.pt
+.perspective_api_key

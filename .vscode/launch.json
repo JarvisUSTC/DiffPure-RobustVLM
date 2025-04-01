@@ -1,0 +1,103 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Train",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "minigpt_visual_attack_diffpure.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--cfg_path", "eval_configs/minigpt4_eval.yaml",
+                "--gpu_id", "0",
+                "--n_iters", "5000",
+                "--constrained",
+                "--eps", "16",
+                "--alpha", "1",
+                "--save_dir", "outputs/visual_constrained_eps_16_diffpure_30_1_ddpm",
+                "--att_max_timesteps", "30",
+                "--att_num_denoising_steps", "1",
+                "--att_sampling_method", "ddpm",
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python: Inference DiffPure Defense",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "minigpt_inference_diffpure.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--image_file", "outputs/visual_constrained_eps_16_diffpure_30_1_ddpm/bad_prompt.bmp",
+                "--input_file", "harmful_corpus/rtp_prompts_challenges_0.jsonl",
+                "--output_file", "outputs/baseline/constrained_diffpure_30_30_ddpm/debug.jsonl",
+                "--def_max_timesteps", "30",
+                "--def_num_denoising_steps", "30",
+                "--def_sampling_method", "ddpm",
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python: Inference DiffPure Defense Omi",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "omi_general_inference_diffpure.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--image_file", "outputs/llava-v15-7b-eps32/LLaVA-v15-7B-eps32-alpha1-iters5000-constrained.bmp",
+                "--input_file", "harmful_corpus/rtp_prompts.jsonl",
+                "--output_file", "outputs/attack/LLaVA-v15-7B-eps32-alpha1-iters5000-constrained/diffpure_30_30_1/debug.jsonl",
+                "--def_max_timesteps", "50",
+                "--def_num_denoising_steps", "50",
+                "--def_sampling_method", "ddpm",
+                "--model_path", "/home/t-jiaweiwang/Project/LLaVA/checkpoints/llava-v1.5-7b-finetune_RobustVLGuard_backbone_lora_4k_2k_3e_STD005-015_P07_r16_4e-5/checkpoint-2200"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python: Inference",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "minigpt_inference.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--image_file", "adversarial_images/prompt_unconstrained.bmp",
+                "--input_file", "harmful_corpus/rtp_prompts_challenges_0.jsonl",
+                "--output_file", "outputs/baseline/unconstrained/debug.jsonl",
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python: Attack LLaVA v15",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "llava_v1_5_visual_attack.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--model-path", "/home/t-jiaweiwang/Project/LLaVA/checkpoints/llava-v1.5-7b-finetune_RobustVLGuard_backbone_lora_4k_2k_3e_STD005-015_P07_r16_4e-5/checkpoint-2200",
+                "--gpu_id", "0",
+                "--n_iters", "5000",
+                "--constrained",
+                "--eps", "32",
+                "--alpha", "1",
+                "--save_dir", "outputs/llava-v15-7b-eps32/",
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+    ]
+}

@@ -1,0 +1,96 @@
+env_defaults:
+  NODES: 1
+  GPUS: 8
+  MEM: 32
+
+environment:
+  image: amlt-sing/pytorch-1.11.0-cuda11.6
+  # image_setup:
+  # - apt-get install software-properties-common
+  # - add-apt-repository ppa:mc3man/trusty-media
+  # - apt-get update
+  # - apt-get install ffmpeg libsm6 libxext6 -y
+  setup:
+  - conda env create -f environment.yml
+target:
+  service: sing
+  # name: itplabrr1cl1
+  # name: msroctovc
+  # name: msrresrchvc
+  # name: vsn-sing-ocr-res-sc
+  name: vsn-sing-ocr-res-wu2
+
+  # service: amlk8s
+  # name: v100-32gb-wus2
+  # vc: vision-itp-ocr-res
+
+  # service: aml
+  # name: ND40rsv2-prod1
+
+# # add OCRA and OCR2 aml targets
+# amlt target add --service aml --workspace-name OCRA --resource-group Vision_GPU --subscription b8da985a-830d-4d20-b9e5-8d4c0d798c7f
+# amlt target add --service aml --workspace-name OCR2 --resource-group FY20Vision --subscription b8da985a-830d-4d20-b9e5-8d4c0d798c7f
+# # amlt target info
+# amlt target info aml
+# amlt target info k8s
+# amlt target info sing
+
+search:
+  job_template:
+    name: "vlm-defense-{project_name}-{condition}"
+    sku: ${NODES}xG8-V100
+    process_count_per_node: 1
+    command:
+    - echo "=====>>>>> Start <<<<<====="
+    - mkdir -p ckpts/
+    - ln -s /blob_msra/zhuzho_container/v-jiaweiwang/LLMs/vicuna ckpts/vicuna
+    - ln -s /blob_msra/zhuzho_container/v-jiaweiwang/pretrained_models/pretrained_minigpt4.pth ckpts/pretrained_minigpt4.pth
+    - source ~/.bashrc
+    - source activate
+    - conda activate minigpt4
+    - bash minigpt_eval_rtp.sh /blob_msra/zhuzho_container/v-jiaweiwang/workstation/llm-safety/vlm-jailbreak-diffusion-defense/{project_name}/{condition} {image_path}
+    - echo "=====>>>>> End <<<<<====="
+    
+    submit_args:
+
+      env:
+        {
+          _AZUREML_SINGULARITY_JOB_UAI: "/subscriptions/48b6cd5e-3ffe-4c2e-9e99-5760a42cd093/resourceGroups/vision-sing-ocr/providers/Microsoft.ManagedIdentity/userAssignedIdentities/vision-sing-ocr-uai",
+        }
+
+    identity: managed
+  type: grid
+  max_trials: 1
+  params:
+    - name: project_name
+      spec: discrete 
+      values:
+      # - "defense"
+      - "baseline"
+
+    - name: condition
+      spec: discrete
+      values: 
+      # - "unconstrained-ddpm-50"
+      - "constrained-16"
+
+    - name: image_path
+      spec: discrete
+      values: 
+      # - "defense/diffusion/denoised.jpg"
+      - "adversarial_images/random_noisy_constrained_16.bmp"
+      
+code:
+  local_dir: ./
+
+description: VLM-Safty
+
+storage:
+
+  output:
+    container_name: msra-backup
+    mount_dir: /blob_msra
+    mount_options:
+    - -o
+    - attr_timeout=240
+    storage_account_name: ocrmodeling
