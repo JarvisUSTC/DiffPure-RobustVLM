@@ -159,7 +159,7 @@ For questions or collaboration opportunities, feel free to reach out at [jarvisu
 
 ## 📝 Acknowledgments
 
-Thanks to the authors of the original models and datasets. This work builds upon their contributions to the field of Vision-Language Models.
+Our repo is built upon https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models Thanks to the authors of the original models and datasets. This work builds upon their contributions to the field of Vision-Language Models.
 We also acknowledge the support of our institutions and collaborators.
 We are grateful for the resources and tools provided by the community that made this research possible.
 
