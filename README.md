@@ -1,5 +1,33 @@
 # 🚀 Safeguarding Vision-Language Models: Mitigating Vulnerabilities to Gaussian Noise in Perturbation-based Attacks
 
+## 👨‍💻 Authors
+
+
+Jiawei Wang<sup>\*</sup><sup>1</sup>, Yushen Zuo<sup>\*</sup><sup>2</sup>, Yuanjun Chai<sup>3</sup>, Zhendong Liu<sup>4</sup>, Yicheng Fu<sup>5</sup>,  Yichun Feng<sup>†</sup><sup>6</sup>, Kin-man Lam<sup>†</sup><sup>2</sup>  
+
+<sup>1</sup>University of Science and Technology of China  
+<sup>2</sup>The Hong Kong Polytechnic University  
+<sup>3</sup>University of Washington  
+<sup>4</sup>Nanjing University  
+<sup>5</sup>Stanford University  
+<sup>6</sup>University of the Chinese Academy of Sciences  
+
+📧 **Contact Emails**:  
+wangjiawei@mail.ustc.edu.cn, yushen.zuo@polyu.edu.hk, yjchai@uw.edu, dz20330019@smail.nju.edu.cn,  
+easonfu@stanford.edu, fengyichun22@mails.ucas.ac.cn, kin.man.lam@polyu.edu.hk  
+
+<sup>\*</sup> Equal contribution.  
+<sup>†</sup> Corresponding authors.
+
+---
+
+<div align="center">
+
+[![arXiv](https://img.shields.io/badge/arXiv-xx-b31b1b.svg)](https://arxiv.org/abs/)
+[![dataset](https://img.shields.io/badge/%F0%9F%A4%97%20_Dataset-RobustVLGuard-ffc107?color=ffc107&logoColor=white)](https://huggingface.co/datasets/Jarvis1111/RobustVLGuard)
+
+</div>
+
 Welcome! This repository hosts the official implementation of our paper, **"Safeguarding Vision-Language Models: Mitigating Vulnerabilities to Gaussian Noise in Perturbation-based Attacks."**
 
 ---
@@ -60,7 +88,7 @@ ln -s your_path/256x256_diffusion_uncond.pt ckpts/diffpure_models/diffusion/Guid
 
 ### 🎓 Fine-tuning VLMs
 
-Our Robust-VLGuard dataset is preprocessed and ready for fine-tuning. Use the official code of the respective VLMs. For instance, refer to `finetuning_scripts/llava.sh` for LLaVA fine-tuning.
+Our Robust-VLGuard dataset is preprocessed and ready for fine-tuning. Use the official code of the respective VLMs. For instance, refer to `finetuning_scripts/llava.sh` for LLaVA fine-tuning. For InternVL2, refer to [this commit](https://github.com/JarvisUSTC/DiffPure-VLM-InternVL/commit/4fb28c58a23da4a3f7646f2eb51f913cfc4346a9).
 
 ### 📂 Fine-tuned Models
 
@@ -98,7 +126,9 @@ or
 python llava_inference_mmvet.py --model_path {MODEL_PATH} --output_path {OUTPUT_PATH}
 ```
 
-Use `minigpt_inference_mmvet.py` for MiniGPT-4.
+Use `minigpt_inference_mmvet.py` for MiniGPT-4. For InternVL2, refer to [this commit](https://github.com/JarvisUSTC/DiffPure-VLM-InternVL/commit/4fb28c58a23da4a3f7646f2eb51f913cfc4346a9).
+
+IMPORTANT: Remember to replace the mmvet_path and image_path in the python script with the correct paths.
 
 ### 🔧 Optimization-based Adversarial Attack
 
@@ -106,7 +136,7 @@ Use `minigpt_inference_mmvet.py` for MiniGPT-4.
 bash llava-attack.sh {GPU_ID} {OUTPUT_PATH} {MODEL_PATH} {EPSILON}
 ```
 
-Where `EPSILON` controls perturbation strength (e.g., 16, 32, or 64). For MiniGPT4, use `minigpt_visual_attack.py`.
+Where `EPSILON` controls perturbation strength (e.g., 16, 32, or 64). For MiniGPT4, use `minigpt_visual_attack.py`. For InternVL2, refer to [this commit](https://github.com/JarvisUSTC/DiffPure-VLM-InternVL/commit/4fb28c58a23da4a3f7646f2eb51f913cfc4346a9).
 
 ### 🔒 Deploying DiffPure-VLM Defense
 
@@ -159,10 +189,7 @@ For questions or collaboration opportunities, feel free to reach out at [jarvisu
 
 ## 📝 Acknowledgments
 
-Our repo is built upon https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models Thanks to the authors of the original models and datasets. This work builds upon their contributions to the field of Vision-Language Models.
+Our repo is built upon https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models. Thanks to the authors of the original models and datasets, including LLaVA, MiniGPT-4, InternVL2, MMVet, and others. 
 We also acknowledge the support of our institutions and collaborators.
 We are grateful for the resources and tools provided by the community that made this research possible.
-
-We appreciate the feedback and insights from our peers, which have greatly improved this work.
-We also thank the reviewers for their constructive comments and suggestions.
 We are committed to advancing the field of multimodal learning and look forward to future collaborations.
