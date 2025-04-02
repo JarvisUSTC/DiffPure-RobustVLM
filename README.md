@@ -83,7 +83,7 @@ ln -s your_path/256x256_diffusion_uncond.pt ckpts/diffpure_models/diffusion/Guid
 ### 📅 Dataset Setup
 
 - **RealToxicityPrompts** is available in the `harmful_corpus/` directory.
-- Download **Robust-VLGuard** from [Google Drive](https://drive.google.com/file/d/1EoNz3Nzh3sq8ZxOlZC2oB603OVSpRJoO/view?usp=sharing)
+- Download **Robust-VLGuard** from [Huggingface](https://huggingface.co/datasets/Jarvis1111/RobustVLGuard)
 - Noisy **MMVet benchmark**: [Google Drive](https://drive.google.com/file/d/1mmkDKH0BlgpJwJkxFklXp7EtSa1BE6XB/view?usp=sharing)
 
 ### 🎓 Fine-tuning VLMs
