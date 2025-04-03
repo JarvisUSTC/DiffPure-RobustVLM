@@ -23,7 +23,7 @@ easonfu@stanford.edu, fengyichun22@mails.ucas.ac.cn, kin.man.lam@polyu.edu.hk
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/arXiv-2504.01308-b31b1b.svg)](https://arxiv.org/abs/)
+[![arXiv](https://img.shields.io/badge/arXiv-2504.01308-b31b1b.svg)](https://arxiv.org/abs/2504.01308)
 [![dataset](https://img.shields.io/badge/%F0%9F%A4%97%20_Dataset-RobustVLGuard-ffc107?color=ffc107&logoColor=white)](https://huggingface.co/datasets/Jarvis1111/RobustVLGuard)
 
 </div>
