@@ -88,7 +88,7 @@ ln -s your_path/256x256_diffusion_uncond.pt ckpts/diffpure_models/diffusion/Guid
 
 ### 🎓 Fine-tuning VLMs
 
-Our Robust-VLGuard dataset is preprocessed and ready for fine-tuning. Use the official code of the respective VLMs. For instance, refer to `finetuning_scripts/llava.sh` for LLaVA fine-tuning. For InternVL2, refer to [this commit](https://github.com/JarvisUSTC/DiffPure-VLM-InternVL/commit/4fb28c58a23da4a3f7646f2eb51f913cfc4346a9).
+Our Robust-VLGuard dataset is preprocessed and ready for fine-tuning. You can use the official code of the respective VLMs, but the Gaussian Noise Augmentation Strategy must be implemented. We have already incorporated this strategy into the official codebases. To see the implementation for LLaVA, refer to [this commit](https://github.com/JarvisUSTC/LLaVA/commit/b46b3616ac722105362da069598b26acfedffcd8). You can also directly fine-tune using this [repo](https://github.com/JarvisUSTC/LLaVA). For other codebases, you can follow the implementation approach used in LLaVA.
 
 ### 📂 Fine-tuned Models
 
