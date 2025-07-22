@@ -1,4 +1,4 @@
-# 🚀 Safeguarding Vision-Language Models: Mitigating Vulnerabilities to Gaussian Noise in Perturbation-based Attacks
+# 🚀 Safeguarding Vision-Language Models: Mitigating Vulnerabilities to Gaussian Noise in Perturbation-based Attacks (ICCV 2025 official implementation)
 
 ## 👨‍💻 Authors
 
